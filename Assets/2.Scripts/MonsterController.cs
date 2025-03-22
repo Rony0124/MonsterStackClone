@@ -26,6 +26,8 @@ public class MonsterController : MonoBehaviour
     private void FixedUpdate()
     {
         float xMoveSpeed = moveSpeed;
+        float yMoveSpeed = rb.velocity.y;
+        
         if (knockbackTime > Time.time)
         {
             currentKnockbackForce -= currentKnockbackForce * Time.fixedDeltaTime;
@@ -39,8 +41,13 @@ public class MonsterController : MonoBehaviour
                 CanJump = false;
             }
         }
+
+        if (rb.velocity.y > jumpForce)
+        {
+            yMoveSpeed = jumpForce;
+        }
         
-        rb.velocity = new Vector2(-xMoveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(-xMoveSpeed, yMoveSpeed);
     }
 
     public void JumpOnBack()

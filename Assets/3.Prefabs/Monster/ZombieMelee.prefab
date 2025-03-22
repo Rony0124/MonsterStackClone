@@ -75,7 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fov: {fileID: 4562285870250673460}
   moveSpeed: 2
-  jumpForce: 2
+  jumpForce: 4
   knockbackForce: 2
   knockbackDuration: 1
   groundChecker: {fileID: 5584398987135923074}
