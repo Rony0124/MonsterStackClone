@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class MonsterController : MonoBehaviour
@@ -26,9 +22,7 @@ public class MonsterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(moveSpeed * ( Vector2.left), ForceMode2D.Force);
-        if (rb.velocity.x > moveSpeed)
-            rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
     }
 
     public void JumpOnBack()

@@ -10,9 +10,6 @@ public class HitBox : MonoBehaviour
       Debug.Log(other.gameObject.name + " Triggered");
       if(layerMask == (layerMask | (1 << other.gameObject.layer)))
       {
-       //  Debug.Log(other.gameObject.name + " Triggered");
-         
-        // Debug.Log(other.gameObject.name);
          var hurtBox = other.transform.GetComponent<HurtBox>();
          if (hurtBox != null)
          {
