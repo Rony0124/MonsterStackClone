@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -4552663021073565082}
   - component: {fileID: 2694655695812755850}
   - component: {fileID: 1627026843990224946}
+  - component: {fileID: 7203078537735255281}
   m_Layer: 9
   m_Name: ZombieMelee
   m_TagString: Untagged
@@ -34,7 +35,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1639109334033341928}
-  - {fileID: 6466271560301880454}
   - {fileID: 331880331746437886}
   - {fileID: 2159676024275696526}
   - {fileID: 1558450215503447210}
@@ -73,12 +73,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9341f9a7f9b1c45139d5eba2e1674e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fov: {fileID: 4562285870250673460}
+  deathDuration: 1.5
   moveSpeed: 2
   jumpForce: 4
   knockbackForce: 2
   knockbackDuration: 1
   groundChecker: {fileID: 5584398987135923074}
+  animator: {fileID: 7016750400611631704}
+  Health: 100
 --- !u!50 &2694655695812755850
 Rigidbody2D:
   serializedVersion: 4
@@ -141,6 +143,34 @@ CapsuleCollider2D:
   m_Offset: {x: -0.1, y: 0.5}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
+--- !u!114 &7203078537735255281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319310827380095937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9deccd15b5a414badcb1b5eae5da4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTakeHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7203078537735255281}
+        m_TargetAssemblyTypeName: MonsterHurtBox, Assembly-CSharp
+        m_MethodName: TakeMonsterDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  monster: {fileID: -4552663021073565082}
 --- !u!1 &545421935660520555
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +182,7 @@ GameObject:
   - component: {fileID: 1558450215503447210}
   - component: {fileID: 5584398987135923074}
   - component: {fileID: 587961334579744140}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -643,59 +673,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &4927742977967336553
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6466271560301880454}
-  - component: {fileID: 4562285870250673460}
-  m_Layer: 0
-  m_Name: Fov
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &6466271560301880454
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4927742977967336553}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.47, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1174570720321624928}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4562285870250673460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4927742977967336553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef4ae376985e94cee943cf5166a4d28e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 2
-  viewAngle: 75
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 64
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  visibleTargets: []
 --- !u!1 &5459113515126551195
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,9 +799,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2159676024275696526}
   - component: {fileID: 9099851771012255807}
-  - component: {fileID: 2876354993375215576}
+  - component: {fileID: 3751489513840182637}
   m_Layer: 7
-  m_Name: HurtBox
+  m_Name: JumpHurtBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -890,7 +867,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
---- !u!114 &2876354993375215576
+--- !u!114 &3751489513840182637
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -899,9 +876,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 6174282428479023126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8afc93f649e6148058641d43e37c8489, type: 3}
+  m_Script: {fileID: 11500000, guid: bc9deccd15b5a414badcb1b5eae5da4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onTakeHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3751489513840182637}
+        m_TargetAssemblyTypeName: MonsterHurtBox, Assembly-CSharp
+        m_MethodName: MakeMonsterJump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   monster: {fileID: -4552663021073565082}
 --- !u!1 &6641488209657979655
 GameObject:

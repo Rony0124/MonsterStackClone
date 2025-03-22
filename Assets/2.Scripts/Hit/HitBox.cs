@@ -12,7 +12,7 @@ public class HitBox : MonoBehaviour
          var hurtBox = other.transform.GetComponent<HurtBox>();
          if (hurtBox != null)
          {
-            hurtBox.TakeHit();
+            hurtBox.TakeHit(this);
          }
       }
    }

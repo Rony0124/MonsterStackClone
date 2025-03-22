@@ -1,21 +1,18 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-   [SerializeField] 
-   private GameObject monsterPrefab;
+   public ObjectPoolMonster monsterPool;
    
    [SerializeField]
    private float spawnInterval;
 
    private float spawnTime;
    
-   private List<GameObject> monsterList = new List<GameObject>();
+   private List<MonsterController> monsterList = new List<MonsterController>();
    
-   private const int MaxMonstersCount = 10;
+   private const int MaxMonstersCount = 30;
 
    private void Start()
    {
@@ -29,8 +26,11 @@ public class MonsterSpawner : MonoBehaviour
 
       if (monsterList.Count >= MaxMonstersCount)
          return;
+
+      var obj = monsterPool.GetObject();
       
-      var obj = Instantiate(monsterPrefab, transform.position, Quaternion.identity);
       monsterList.Add(obj);
+      
+      spawnTime = Time.time + spawnInterval;
    }
 }
