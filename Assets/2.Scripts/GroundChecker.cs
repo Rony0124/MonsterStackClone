@@ -11,7 +11,16 @@ public class GroundChecker : MonoBehaviour
         if(layerMask == (layerMask | (1 << other.gameObject.layer)))
         {
             Debug.Log(other.gameObject.name + " Triggered");
-            IsGrounded = true;
+            if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                IsGrounded = true;
+            }
+            
+            if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                var monster = other.transform.GetComponent<MonsterController>();
+                monster.KnockBack();
+            }
         }
     }
     

@@ -5,6 +5,6 @@ public class HurtBox : MonoBehaviour
     [SerializeField] private MonsterController monster;
     public void TakeHit()
     {
-        monster.JumpOnBack();
+        monster.CanJump = true;
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4552663021073565082}
   - component: {fileID: 2694655695812755850}
   - component: {fileID: 1627026843990224946}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: ZombieMelee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,8 +75,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fov: {fileID: 4562285870250673460}
   moveSpeed: 2
-  jumpForce: 10
-  yThreshold: 0
+  jumpForce: 2
+  knockbackForce: 2
+  knockbackDuration: 1
   groundChecker: {fileID: 5584398987135923074}
 --- !u!50 &2694655695812755850
 Rigidbody2D:
@@ -187,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
 --- !u!61 &587961334579744140
 BoxCollider2D:
   m_ObjectHideFlags: 0
