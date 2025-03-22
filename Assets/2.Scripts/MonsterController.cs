@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class MonsterController : MonoBehaviour
 {
-    [SerializeField] private FOV fov;
-    
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float knockbackForce;
