@@ -1,18 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FOV : MonoBehaviour
 {
-    public float viewRadius;
-    [Range(0, 360)]
-    public float viewAngle;
+    public Vector2 viewOffset;
+    public Vector2 viewSize;
 
     public LayerMask  targetMask;
     
-    public List<Transform> visibleTargets = new List<Transform>();
     public Transform target { get; set; }
+    
+    public Vector2 targetDir => target != null ? (target.position - transform.position).normalized : Vector2.zero;
     
     void Start()
     {
@@ -38,25 +37,19 @@ public class FOV : MonoBehaviour
     
     private Transform FindVisibleTargets()
     {
-        visibleTargets.Clear();
-        
-        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
+        Vector2 viewPos = Vector2.right * (transform.position.x + viewOffset.x) + Vector2.up * (transform.position.y + viewOffset.y);
+        Collider2D[] targetsInView = Physics2D.OverlapBoxAll(viewPos, viewSize,0, targetMask);
         float minDistance = float.MaxValue;
         Transform closestTarget = null;
         
-        foreach (Collider2D targetCollider in targetsInViewRadius)
+        foreach (Collider2D targetCollider in targetsInView)
         {
             Transform target = targetCollider.transform;
-            Vector2 dirToTarget = (target.position - transform.position).normalized;
-            
-            if (Vector2.Angle(transform.right, dirToTarget) < viewAngle / 2)
-            {
-                float dstToTarget = Vector2.Distance(transform.position, target.position);
+            float dstToTarget = Vector2.Distance(transform.position, target.position);
                 
-                if (minDistance > dstToTarget)
-                {
-                    closestTarget = target;
-                }
+            if (minDistance > dstToTarget)
+            {
+                closestTarget = target;
             }
         }
 
@@ -76,19 +69,13 @@ public class FOV : MonoBehaviour
     
     private void OnDrawGizmos()
     {
+        Vector2 viewPos = Vector2.right * (transform.position.x + viewOffset.x) + Vector2.up * (transform.position.y + viewOffset.y);
         Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, viewRadius);
-
-        Vector2 viewAngleA = DirFromAngle(-viewAngle / 2, false);
-        Vector2 viewAngleB = DirFromAngle(viewAngle / 2, false);
-
-        Gizmos.DrawLine(transform.position, (Vector2)transform.position + viewAngleA * viewRadius);
-        Gizmos.DrawLine(transform.position, (Vector2)transform.position + viewAngleB * viewRadius);
+        Gizmos.DrawWireCube(viewPos, viewSize);
 
         Gizmos.color = Color.red;
-        foreach (Transform visible in visibleTargets)
-        {
-            Gizmos.DrawLine(transform.position, visible.position);
-        }
+        
+        if(target != null)
+            Gizmos.DrawLine(transform.position, target.position);
     }
 }

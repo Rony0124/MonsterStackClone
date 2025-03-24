@@ -21,11 +21,12 @@ public class PlayerController : MonoBehaviour
     private void Shoot()
     {
         var bullet = bulletPool.GetObject();
-        bullet.transform.rotation = fov.transform.rotation;
+        Vector2 newPos = fov.targetDir;
+        float rotZ = Mathf.Atan2(newPos.y, newPos.x) * Mathf.Rad2Deg;
+        bullet.transform.rotation = Quaternion.Euler(0, 0, rotZ);
         bullet.playerController = this;
         
         shootingTime = Time.time + shootingInterval;
-        Debug.Log("Shoot");
     }
 
     public void RetrieveBullet(PlayerBullet playerBullet)

@@ -55,7 +55,7 @@ public class MonsterController : MonoBehaviour
         {
             if (deathTime < Time.time)
             {
-                GameManager.Instance.MonsterSpawner.monsterPool.ReturnObject(this);
+                GameManager.Instance.MonsterSpawner.pool.ReturnObject(this);
             }
         }
     }
@@ -89,7 +89,7 @@ public class MonsterController : MonoBehaviour
 
     public void JumpOnBack()
     {
-        rb.AddForce(jumpForce * (Vector2.up), ForceMode2D.Impulse);
+        rb.AddForce(jumpForce * (Vector2.up), ForceMode2D.Impulse); 
     }
 
     public void KnockBack()
@@ -100,7 +100,11 @@ public class MonsterController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("monster" + damage);
+        Debug.Log(damage);
+        var floatingText = GameManager.Instance.TextSpawner.pool.GetObject();
+        floatingText.transform.position = transform.position;
+        floatingText.SetText(damage.ToString());
+        
         Health -= damage;
         if (Health <= 0)
         {

@@ -22,6 +22,6 @@ public class PlayerBullet : MonoBehaviour
             return;
         }
         
-        transform.Translate(transform.up * Time.deltaTime * bulletSpeed);
+        transform.Translate(transform.right * Time.deltaTime * bulletSpeed, Space.World);
     }
 }

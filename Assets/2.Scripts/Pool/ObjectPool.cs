@@ -44,6 +44,7 @@ public abstract class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
 
     public virtual void ReturnObject(T obj)
     {
+        obj.transform.position = transform.position;
         obj.gameObject.SetActive(false);
         pool.Enqueue(obj);
     }

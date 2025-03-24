@@ -1,16 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterSpawner : MonoBehaviour
+public class MonsterSpawner : Spawner<MonsterController>
 {
-   public ObjectPoolMonster monsterPool;
-   
    [SerializeField]
    private float spawnInterval;
 
    private float spawnTime;
-   
-   private List<MonsterController> monsterList = new List<MonsterController>();
    
    private const int MaxMonstersCount = 30;
 
@@ -24,12 +20,12 @@ public class MonsterSpawner : MonoBehaviour
       if (spawnTime > Time.time)
          return;
 
-      if (monsterList.Count >= MaxMonstersCount)
+      if (poolList.Count >= MaxMonstersCount)
          return;
 
-      var obj = monsterPool.GetObject();
+      var obj = pool.GetObject();
       
-      monsterList.Add(obj);
+      poolList.Add(obj);
       
       spawnTime = Time.time + spawnInterval;
    }
