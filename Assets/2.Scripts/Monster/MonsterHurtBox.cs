@@ -6,9 +6,8 @@ public class MonsterHurtBox : HurtBox
     public UnityEvent onTakeHit;
     
     [SerializeField] private MonsterController monster;
-    
     private HitBox hitBox;
-    
+
     public override void TakeHit(HitBox hitBox)
     {
         this.hitBox = hitBox;

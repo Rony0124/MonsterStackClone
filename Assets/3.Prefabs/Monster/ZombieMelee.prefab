@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2694655695812755850}
   - component: {fileID: 1627026843990224946}
   - component: {fileID: 7203078537735255281}
+  - component: {fileID: 2176008551633489582}
   m_Layer: 9
   m_Name: ZombieMelee
   m_TagString: Untagged
@@ -79,8 +80,11 @@ MonoBehaviour:
   knockbackForce: 2
   knockbackDuration: 1
   groundChecker: {fileID: 5584398987135923074}
+  monsterHitInterval: 2
   animator: {fileID: 7016750400611631704}
+  attackAnimationDuration: 0.3
   Health: 100
+  Damage: 10
 --- !u!50 &2694655695812755850
 Rigidbody2D:
   serializedVersion: 4
@@ -171,6 +175,22 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   monster: {fileID: -4552663021073565082}
+--- !u!114 &2176008551633489582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319310827380095937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b482e3c3ee53f430398ec215b4254cb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  monsterController: {fileID: -4552663021073565082}
 --- !u!1 &545421935660520555
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,7 +444,7 @@ GameObject:
   - component: {fileID: 8637211868128173998}
   - component: {fileID: 9028979275617733917}
   m_Layer: 0
-  m_Name: HitBox
+  m_Name: JumpHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -801,7 +821,7 @@ GameObject:
   - component: {fileID: 9099851771012255807}
   - component: {fileID: 3751489513840182637}
   m_Layer: 7
-  m_Name: JumpHurtBox
+  m_Name: MonsterTargetBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

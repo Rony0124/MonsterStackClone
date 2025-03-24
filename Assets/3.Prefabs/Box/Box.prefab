@@ -195,6 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6352321554421462411}
+  - component: {fileID: 6502528429921722760}
   m_Layer: 6
   m_Name: HPPanel
   m_TagString: Untagged
@@ -218,6 +219,19 @@ Transform:
   - {fileID: 5897285488987320740}
   m_Father: {fileID: 360675798204360400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6502528429921722760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5470163909460436904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68d29f62333f4e10996cc840cdb2e1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpSlider: {fileID: 134779646897404493}
 --- !u!1 &6198218911138482571
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 360675798204360400}
+  - component: {fileID: 7565347313027309239}
   m_Layer: 6
   m_Name: Box
   m_TagString: Hero
@@ -442,6 +457,19 @@ Transform:
   - {fileID: 6352321554421462411}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7565347313027309239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6628118391875189848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f26cf0cedd0e4bd49be804300e8231a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHpPanel: {fileID: 6502528429921722760}
 --- !u!1 &6872163726244765423
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,6 +481,7 @@ GameObject:
   - component: {fileID: 8800009423310853030}
   - component: {fileID: 428821504350599970}
   - component: {fileID: 9086951560678394977}
+  - component: {fileID: 5660965731720578486}
   m_Layer: 6
   m_Name: Box
   m_TagString: Untagged
@@ -572,6 +601,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 1.5444086}
   m_EdgeRadius: 0
+--- !u!114 &5660965731720578486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6872163726244765423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffafeee8c4b7b48e298b0c900ff492c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBox: {fileID: 7565347313027309239}
 --- !u!1 &7588322236121219931
 GameObject:
   m_ObjectHideFlags: 0

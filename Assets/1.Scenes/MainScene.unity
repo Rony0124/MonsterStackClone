@@ -236,6 +236,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5470163909460436904, guid: 5adc49a3cd414458b96cda173bbaeffb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6198218911138482571, guid: 5adc49a3cd414458b96cda173bbaeffb, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -262,11 +266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8935083021968394599, guid: 5adc49a3cd414458b96cda173bbaeffb, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8935083021968394599, guid: 5adc49a3cd414458b96cda173bbaeffb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 0.362
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -553,7 +557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 478636167}
   - component: {fileID: 478636168}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: FrontWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,7 +818,7 @@ GameObject:
   m_Component:
   - component: {fileID: 639653329}
   - component: {fileID: 639653330}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BackWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1143,6 +1147,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 100, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &906899743 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3676418251954061299, guid: 39e73014526a04149a4b4bff2302893b, type: 3}
+  m_PrefabInstance: {fileID: 1544987788}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a23e757a28a4bcaa871e4e6e29855f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &988428231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,7 +1205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1266146523}
   - component: {fileID: 1266146524}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1273,6 +1288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1489341059}
+  - component: {fileID: 1489341060}
   m_Layer: 6
   m_Name: Truck
   m_TagString: Untagged
@@ -1297,6 +1313,28 @@ Transform:
   - {fileID: 1783366072}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1489341060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489341058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4cc57a52f95245c3a579a6438d8f8fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fov: {fileID: 2130420068}
+  shootingInterval: 2
+  bulletPool: {fileID: 906899743}
+  boxInfos:
+  - health: 100
+  - health: 100
+  - health: 100
+  - health: 100
+  - health: 100
+  damage: 10
 --- !u!1001 &1544987788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1369,7 +1407,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hero
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2312492140037065765, guid: 39e73014526a04149a4b4bff2302893b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1388,7 +1427,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1677295389}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: WheelParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1423,7 +1462,7 @@ GameObject:
   - component: {fileID: 1783366072}
   - component: {fileID: 1783366074}
   - component: {fileID: 1783366075}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: TruckSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1654,6 +1693,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 360675798204360400, guid: 5adc49a3cd414458b96cda173bbaeffb, type: 3}
   m_PrefabInstance: {fileID: 2042914849}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2130420068 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3397510188058366665, guid: 39e73014526a04149a4b4bff2302893b, type: 3}
+  m_PrefabInstance: {fileID: 1544987788}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4ae376985e94cee943cf5166a4d28e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &437466680617788831
 SpriteRenderer:
   m_ObjectHideFlags: 0
