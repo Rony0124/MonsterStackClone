@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class MonsterSpawner : Spawner<MonsterController>
 {
-   [SerializeField]
-   private float spawnInterval;
-
+   [SerializeField] private float spawnInterval;
+   [SerializeField] private int orderInLayerOffset;
+   
    private float spawnTime;
    
    private const int MaxMonstersCount = 30;
@@ -24,6 +24,7 @@ public class MonsterSpawner : Spawner<MonsterController>
          return;
 
       var obj = pool.GetObject();
+      obj.Graphic.AddOrderInLayer(orderInLayerOffset);
       
       poolList.Add(obj);
       

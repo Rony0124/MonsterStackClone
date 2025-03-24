@@ -19,6 +19,9 @@ public class MonsterController : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private Animator animator;
     [SerializeField] private float attackAnimationDuration;
+    
+    [Header("Graphic")]
+    [SerializeField] private MonsterGraphic graphic;
 
     private Rigidbody2D rb;
     private float deathTime;
@@ -46,6 +49,8 @@ public class MonsterController : MonoBehaviour
             isDead = value;
         }
     }
+    
+    public MonsterGraphic Graphic => graphic;
     
     private static readonly int IdleId= Animator.StringToHash("IsIdle");
     private static readonly int AttackId = Animator.StringToHash("IsAttacking");

@@ -83,8 +83,9 @@ MonoBehaviour:
   monsterHitInterval: 2
   animator: {fileID: 7016750400611631704}
   attackAnimationDuration: 0.3
+  graphic: {fileID: 160307227848423462}
   Health: 100
-  Damage: 10
+  Damage: 1
 --- !u!50 &2694655695812755850
 Rigidbody2D:
   serializedVersion: 4
@@ -956,6 +957,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1639109334033341928}
+  - component: {fileID: 160307227848423462}
   m_Layer: 0
   m_Name: bodyPivot
   m_TagString: Untagged
@@ -984,6 +986,18 @@ Transform:
   - {fileID: 5549818585384498318}
   m_Father: {fileID: 1174570720321624928}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &160307227848423462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6840219418452013153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da317b192aac49aabae5cd5f4ce2439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7189000493299460377
 GameObject:
   m_ObjectHideFlags: 0
