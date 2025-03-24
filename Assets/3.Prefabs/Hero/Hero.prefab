@@ -175,12 +175,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef4ae376985e94cee943cf5166a4d28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 30
-  viewAngle: 180
+  viewOffset: {x: 2.8, y: -3.18}
+  viewSize: {x: 9, y: 14.44}
   targetMask:
     serializedVersion: 2
     m_Bits: 512
-  visibleTargets: []
 --- !u!1 &8958240697474582917
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +190,6 @@ GameObject:
   m_Component:
   - component: {fileID: 175888370978376783}
   - component: {fileID: 1289778038360852145}
-  - component: {fileID: 2312492140037065765}
   m_Layer: 6
   m_Name: Hero
   m_TagString: Untagged
@@ -268,19 +266,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2312492140037065765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8958240697474582917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4cc57a52f95245c3a579a6438d8f8fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fov: {fileID: 3397510188058366665}
-  shootingInterval: 2
-  bulletPool: {fileID: 3676418251954061299}
-  damage: 10

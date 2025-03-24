@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBox : MonoBehaviour
 {
     [SerializeField] private PlayerBoxHpPanel playerHpPanel;
+    [SerializeField] private float boxHeight;
+    
+    private PlayerController player;
    
     private float health;
     public float Health {
@@ -15,6 +16,8 @@ public class PlayerBox : MonoBehaviour
             health = value;
         }
     }
+    
+    public float BoxHeight => boxHeight;
 
     private void OnHealthChanged(float health)
     {
@@ -25,14 +28,15 @@ public class PlayerBox : MonoBehaviour
 
         if (health <= 0)
         {
-            Debug.Log("dead");
+            player.onPlayerBoxDead.Invoke(this);
         }
     }
 
-    public void SetBox(PlayerController.PlayerBoxInfo info)
+    public void SetBox(PlayerController.PlayerBoxInfo info, PlayerController player)
     {
         health = info.health;
         playerHpPanel.SetPanel(health);
+        this.player = player;
     }
     
     public void TakeDamage(float damage)

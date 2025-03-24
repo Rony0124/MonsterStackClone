@@ -25,7 +25,8 @@ public class MonsterHitBox : HitBox
 
     public void OnAttack()
     {
-        hurtBox.TakeHit(this);
+        if(hurtBox != null)
+            hurtBox.TakeHit(this);
     }
     
     public float GetMonsterDamage() => monsterController.Damage;

@@ -470,6 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHpPanel: {fileID: 6502528429921722760}
+  boxHeight: 1.5
 --- !u!1 &6872163726244765423
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Action<PlayerBox> onPlayerBoxDead;
+    
     [Serializable]
     public struct PlayerBoxInfo
     {
@@ -18,7 +20,8 @@ public class PlayerController : MonoBehaviour
     
     [Header("Box")]
     [SerializeField] private List<PlayerBoxInfo> boxInfos;
-    private PlayerBox[] playerBoxes;
+    
+    private List<PlayerBox> playerBoxes;
     
     public int damage;
     
@@ -26,11 +29,13 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        playerBoxes = gameObject.GetComponentsInChildren<PlayerBox>();
-        for (int i = 0; i < playerBoxes.Length; i++)
+        playerBoxes = gameObject.GetComponentsInChildren<PlayerBox>().ToList();
+        for (int i = 0; i < playerBoxes.Count; i++)
         {
-            playerBoxes[i].SetBox(boxInfos[i]);
+            playerBoxes[i].SetBox(boxInfos[i], this);
         }
+
+        onPlayerBoxDead += OnPlayerBoxDead;
     }
 
     private void Update()
@@ -41,11 +46,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        onPlayerBoxDead = null;
+    }
+
     private void Shoot()
     {
         var bullet = bulletPool.GetObject();
-        Vector2 newPos = fov.targetDir;
-        float rotZ = Mathf.Atan2(newPos.y, newPos.x) * Mathf.Rad2Deg;
+        var newPos = fov.targetDir;
+        var rotZ = Mathf.Atan2(newPos.y, newPos.x) * Mathf.Rad2Deg;
+        
         bullet.transform.rotation = Quaternion.Euler(0, 0, rotZ);
         bullet.playerController = this;
         
@@ -55,5 +66,28 @@ public class PlayerController : MonoBehaviour
     public void RetrieveBullet(PlayerBullet playerBullet)
     {
         bulletPool.ReturnObject(playerBullet);   
+    }
+
+    private void OnPlayerBoxDead(PlayerBox box)
+    {
+        if (playerBoxes.Contains(box))
+        {
+            var removedY = box.transform.position.y;
+            var removedBoxHeight = box.BoxHeight;
+            
+            playerBoxes.Remove(box);
+            
+            Destroy(box.gameObject);
+
+            foreach (var otherBox in playerBoxes)
+            {
+                if (otherBox.transform.position.y > removedY)
+                {
+                    var newPosition = otherBox.transform.position;
+                    newPosition.y -= removedBoxHeight;
+                    otherBox.transform.position = newPosition;
+                }
+            }
+        }
     }
 }
