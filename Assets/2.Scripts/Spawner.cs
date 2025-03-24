@@ -7,8 +7,15 @@ public abstract class Spawner<T> : MonoBehaviour where T : MonoBehaviour
     
     public List<T> poolList;
 
-    public void StopSpawn()
+    public virtual void StopSpawn()
     {
+        foreach (var obj in poolList)
+        {
+            Destroy(obj.gameObject);
+        }
+        
+        poolList.Clear();
+        pool.Clear();
         pool.StopSpawner = true;
     }
 }

@@ -22,12 +22,22 @@ public class MonsterSpawner : Spawner<MonsterController>
 
       if (poolList.Count >= MaxMonstersCount)
          return;
+      
+      if(pool.StopSpawner)
+         return;
 
       var obj = pool.GetObject();
       obj.Graphic.AddOrderInLayer(orderInLayerOffset);
+      obj.SetSpawner(this);
       
       poolList.Add(obj);
       
       spawnTime = Time.time + spawnInterval;
+   }
+
+   public void RetrieveMonster(MonsterController monster)
+   {
+      pool.ReturnObject(monster);
+      poolList.Remove(monster);
    }
 }

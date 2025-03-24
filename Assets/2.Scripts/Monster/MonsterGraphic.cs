@@ -6,7 +6,7 @@ public class MonsterGraphic : MonoBehaviour
 
     private void OnEnable()
     {
-        if(spriteRenderers.Length > 0)
+        if(spriteRenderers is not null && spriteRenderers.Length > 0)
             return;
         
         spriteRenderers = transform.GetComponentsInChildren<SpriteRenderer>();

@@ -166,8 +166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636b303fb13f8413e98fdb2623870fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterSpawner: {fileID: 605809385}
+  monsterSpawners:
+  - {fileID: 605809385}
+  - {fileID: 1085843406}
   textSpawner: {fileID: 393839987}
+  playerController: {fileID: 1489341060}
 --- !u!1001 &135695950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -641,8 +644,8 @@ GameObject:
   m_Component:
   - component: {fileID: 491000947}
   - component: {fileID: 491000948}
-  m_Layer: 10
-  m_Name: Ground (1)
+  m_Layer: 11
+  m_Name: Ground-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -863,7 +866,7 @@ Transform:
   m_GameObject: {fileID: 605809383}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.85, y: 0, z: 0}
+  m_LocalPosition: {x: 7.85, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1159,7 +1162,7 @@ GameObject:
   - component: {fileID: 744463960}
   - component: {fileID: 744463961}
   m_Layer: 8
-  m_Name: Ground
+  m_Name: Ground-0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1315,7 +1318,7 @@ Transform:
   m_GameObject: {fileID: 1085843405}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.85, y: 0, z: 0}
+  m_LocalPosition: {x: 7.85, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1416,6 +1419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1489341059}
   - component: {fileID: 1489341060}
+  - component: {fileID: 1489341061}
   m_Layer: 6
   m_Name: Truck
   m_TagString: Untagged
@@ -1462,7 +1466,53 @@ MonoBehaviour:
   - health: 100
   - health: 100
   - health: 100
+  heroBox: {fileID: 1544987789}
   damage: 10
+--- !u!61 &1489341061
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489341058}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.45511174, y: 5.3803678}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.890068, y: 11.7607355}
+  m_EdgeRadius: 0
 --- !u!1 &1536079748
 GameObject:
   m_ObjectHideFlags: 0

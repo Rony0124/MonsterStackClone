@@ -7,6 +7,30 @@ public class MonsterHitBox : HitBox
     
     private HurtBox hurtBox;
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (layerMask == (layerMask | (1 << other.gameObject.layer)))
+        {
+            var player = other.transform.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                monsterController.OverrideXMoveSpeed = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (layerMask == (layerMask | (1 << other.gameObject.layer)))
+        {
+            var player = other.transform.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                monsterController.OverrideXMoveSpeed = false;
+            }
+        }
+    }
+
     private void OnCollisionStay2D(Collision2D other)
     {
         if(layerMask == (layerMask | (1 << other.gameObject.layer)))

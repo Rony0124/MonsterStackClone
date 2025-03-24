@@ -425,7 +425,7 @@ MonoBehaviour:
   viewSize: {x: 9, y: 14.44}
   targetMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 4608
 --- !u!1 &8222664992927929862
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +613,6 @@ GameObject:
   m_Component:
   - component: {fileID: 175888370978376783}
   - component: {fileID: 1289778038360852145}
-  - component: {fileID: 3490032802759809585}
   m_Layer: 6
   m_Name: Hero
   m_TagString: Untagged
@@ -691,17 +690,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3490032802759809585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8958240697474582917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f26cf0cedd0e4bd49be804300e8231a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHpPanel: {fileID: 1464899258557816562}
-  boxHeight: 1.5

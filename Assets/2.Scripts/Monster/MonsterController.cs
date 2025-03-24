@@ -29,8 +29,12 @@ public class MonsterController : MonoBehaviour
     private float currentKnockbackForce;
     private float monsterHitTime;
     private float attackAnimationTime;
+    private bool overrideXMoveSpeed;
     
     public bool CanJump { get; set; }
+    public bool OverrideXMoveSpeed { get; set; }
+
+    private MonsterSpawner monsterSpawner;
 
     [Header("Stat")]
     public float Health;
@@ -61,6 +65,11 @@ public class MonsterController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    public void SetSpawner(MonsterSpawner spawner)
+    {
+        monsterSpawner = spawner;
+    }
+
     private void Update()
     {
         if (isDead)
@@ -68,12 +77,11 @@ public class MonsterController : MonoBehaviour
             if (deathTime < Time.time)
             {
                 SetAnimatorParamBool(DeathId, false);
-                GameManager.Instance.MonsterSpawner.pool.ReturnObject(this);
+                monsterSpawner.RetrieveMonster(this);
                 isDead = false;
             }
         }
-
-        if (!isDead)
+        else
         {
             if (attackAnimationTime < Time.time)
             {
@@ -84,29 +92,38 @@ public class MonsterController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isDead)
-            return;
-        
         float xMoveSpeed = moveSpeed;
         float yMoveSpeed = rb.velocity.y;
         
-        if (knockbackTime > Time.time)
+        if (isDead)
         {
-            currentKnockbackForce -= currentKnockbackForce * Time.fixedDeltaTime;
-            xMoveSpeed -= currentKnockbackForce;
+            xMoveSpeed = 0;
         }
         else
         {
-            if (CanJump)
+            if (knockbackTime > Time.time)
             {
-                JumpOnBack();
-                CanJump = false;
+                currentKnockbackForce -= currentKnockbackForce * Time.fixedDeltaTime;
+                xMoveSpeed -= currentKnockbackForce;
             }
-        }
+            else
+            {
+                if (CanJump)
+                {
+                    JumpOnBack();
+                    CanJump = false;
+                }
+            }
 
-        if (rb.velocity.y > jumpForce)
-        {
-            yMoveSpeed = jumpForce;
+            if (OverrideXMoveSpeed)
+            {
+                xMoveSpeed = 0;
+            }
+
+            if (rb.velocity.y > jumpForce)
+            {
+                yMoveSpeed = jumpForce;
+            }
         }
         
         rb.velocity = new Vector2(-xMoveSpeed, yMoveSpeed);
@@ -126,7 +143,7 @@ public class MonsterController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         var floatingText = GameManager.Instance.TextSpawner.GetFloatingText();
-        floatingText.transform.position = transform.position;
+        floatingText.transform.position = transform.position + Vector3.up;
         floatingText.SetText(damage.ToString());
         
         Health -= damage;

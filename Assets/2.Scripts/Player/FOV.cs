@@ -23,15 +23,18 @@ public class FOV : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(delay);
-            var target =  FindVisibleTargets();
-            if (target != null)
+            var closestTarget =  FindVisibleTargets();
+            if (closestTarget != null)
             {
-                Vector2 newPos = target.transform.position - transform.position;
-                float rotZ = Mathf.Atan2(newPos.y, newPos.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0, 0, rotZ);
-                
-                this.target = target;
+                target = closestTarget;
             }
+
+            if (GameManager.Instance.IsGameOver)
+            {
+                target = null;
+                break;
+            }
+               
         }
     }
     

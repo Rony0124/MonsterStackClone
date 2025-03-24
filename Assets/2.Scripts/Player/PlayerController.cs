@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     
     [Header("Box")]
     [SerializeField] private List<PlayerBoxInfo> boxInfos;
+    [SerializeField] private Transform heroBox;
     
     private List<PlayerBox> playerBoxes;
     
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour
         var newPos = fov.targetDir;
         var rotZ = Mathf.Atan2(newPos.y, newPos.x) * Mathf.Rad2Deg;
         
+        fov.transform.rotation = Quaternion.Euler(0, 0, rotZ);
         bullet.transform.rotation = Quaternion.Euler(0, 0, rotZ);
         bullet.playerController = this;
         
@@ -78,12 +80,7 @@ public class PlayerController : MonoBehaviour
             playerBoxes.Remove(box);
             
             Destroy(box.gameObject);
-
-            if (playerBoxes.Count <= 0)
-            {
-                GameManager.Instance.onGameOver?.Invoke();
-            }
-
+            
             foreach (var otherBox in playerBoxes)
             {
                 if (otherBox.transform.position.y > removedY)
@@ -93,6 +90,16 @@ public class PlayerController : MonoBehaviour
                     otherBox.transform.position = newPosition;
                 }
             }
+            
+            var newHeroPosition = heroBox.position;
+            newHeroPosition.y -= removedBoxHeight;
+            heroBox.transform.position = newHeroPosition;
         }
+        
+        if (playerBoxes.Count <= 0)
+        {
+            GameManager.Instance.onGameOver?.Invoke();
+        }
+
     }
 }
