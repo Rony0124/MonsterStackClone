@@ -28,7 +28,7 @@ public class MonsterSpawner : Spawner<MonsterController>
 
       var obj = pool.GetObject();
       obj.Graphic.AddOrderInLayer(orderInLayerOffset);
-      obj.SetSpawner(this);
+      obj.SetMonster(this);
       
       poolList.Add(obj);
       

@@ -54,6 +54,8 @@ public class MonsterController : MonoBehaviour
         }
     }
     
+    private float currentHealth;
+    
     public MonsterGraphic Graphic => graphic;
     
     private static readonly int IdleId= Animator.StringToHash("IsIdle");
@@ -65,9 +67,10 @@ public class MonsterController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void SetSpawner(MonsterSpawner spawner)
+    public void SetMonster(MonsterSpawner spawner)
     {
         monsterSpawner = spawner;
+        currentHealth = Health;
     }
 
     private void Update()
@@ -146,8 +149,8 @@ public class MonsterController : MonoBehaviour
         floatingText.transform.position = transform.position + Vector3.up;
         floatingText.SetText(damage.ToString());
         
-        Health -= damage;
-        if (Health <= 0)
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
             IsDead = true;
         }
