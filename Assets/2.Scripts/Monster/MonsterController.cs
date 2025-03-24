@@ -26,6 +26,7 @@ public class MonsterController : MonoBehaviour
     private float currentKnockbackForce;
     private float monsterHitTime;
     private float attackAnimationTime;
+    
     public bool CanJump { get; set; }
 
     [Header("Stat")]
@@ -45,8 +46,6 @@ public class MonsterController : MonoBehaviour
             isDead = value;
         }
     }
-    
-    public GroundChecker GroundChecker => groundChecker;
     
     private static readonly int IdleId= Animator.StringToHash("IsIdle");
     private static readonly int AttackId = Animator.StringToHash("IsAttacking");
@@ -121,7 +120,7 @@ public class MonsterController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        var floatingText = GameManager.Instance.TextSpawner.pool.GetObject();
+        var floatingText = GameManager.Instance.TextSpawner.GetFloatingText();
         floatingText.transform.position = transform.position;
         floatingText.SetText(damage.ToString());
         

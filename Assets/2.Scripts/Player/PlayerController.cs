@@ -79,6 +79,11 @@ public class PlayerController : MonoBehaviour
             
             Destroy(box.gameObject);
 
+            if (playerBoxes.Count <= 0)
+            {
+                GameManager.Instance.onGameOver?.Invoke();
+            }
+
             foreach (var otherBox in playerBoxes)
             {
                 if (otherBox.transform.position.y > removedY)

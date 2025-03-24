@@ -7,6 +7,8 @@ public abstract class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
     [SerializeField] private int initialPoolSize = 10;
         
     protected readonly Queue<T> pool = new ();
+    
+    public bool StopSpawner { get; set; }
 
     protected virtual void Awake()
     {
@@ -32,6 +34,9 @@ public abstract class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
 
     public virtual T GetObject()
     {
+        if (StopSpawner)
+            return null;
+        
         if (pool.Count == 0)
         {
             pool.Enqueue(CreateNewObject());

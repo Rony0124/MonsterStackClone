@@ -12,8 +12,8 @@ public class FloatingText : MonoBehaviour
     [SerializeField] private float remapYOne;
     
     [SerializeField] private AnimationCurve animateYCurve;
-    
-    public FloatingTextPool pool { get; set; }
+
+    private FloatingTextSpawner spawner;
     
     private float startedAt;
     private float elapsedTime;
@@ -21,7 +21,7 @@ public class FloatingText : MonoBehaviour
 
     private void OnEnable()
     {
-        pool = GameManager.Instance.TextSpawner.pool as FloatingTextPool;
+        spawner = GameManager.Instance.TextSpawner;
         startedAt = Time.time;
         targetTextMesh.GetComponent<MeshRenderer>().sortingOrder = 10;
     }
@@ -73,7 +73,7 @@ public class FloatingText : MonoBehaviour
 
     public void Release()
     {
-        pool.ReturnObject(this);
+        spawner.RetrieveFloatingText(this);
     }
     
     public static float Remap(float x, float A, float B, float C, float D)
